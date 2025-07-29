@@ -4,6 +4,7 @@ import { X } from "lucide-react"
 import { OrderContext } from "@/providers/order"
 import { use } from "react"
 import { calculateTotalOrder } from "@/lib/helper"
+import Image from "next/image"
 
 export function ModalOrder(){
     const { onRequestClose, order, finishOrder } = use(OrderContext)
@@ -33,7 +34,13 @@ export function ModalOrder(){
                     )}
 
                     {order.map(item => (
-                        <section className={styles.item}>
+                        <section className={styles.item} key={item.id}>
+                            <Image 
+                                src={item.product.banner} 
+                                alt={item.product.description} 
+                                width={70}
+                                height={70}
+                            />
                             <span>
                                 Qtd: {item.amount} - <b>{item.product.name}</b> - R$ {parseFloat(item.product.price) * (item.amount)}
                             </span>
