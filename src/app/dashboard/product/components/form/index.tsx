@@ -82,10 +82,7 @@ export function Form({ categories }: Props) {
         <main className={styles.container}>
             <h1>Novo Produto</h1>
 
-            <form className={styles.form}   onSubmit={(e) => {
-                e.preventDefault(); // 🔥 impede o submit padrão
-                handleRegisterProduct(new FormData(e.currentTarget));
-            }}>
+            <form className={styles.form} action={handleRegisterProduct}>
 
                 <label className={styles.labelImagem}>
                     <span>
@@ -93,8 +90,7 @@ export function Form({ categories }: Props) {
                     </span>
 
                     <input 
-                        type="file"
-                        name="file"
+                        type="file" 
                         accept="image/png, image/jpeg"
                         required
                         onChange={handleFile}
